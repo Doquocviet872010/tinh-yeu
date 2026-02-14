@@ -16,27 +16,66 @@
             overflow: hidden;
         }
 
-        /* Hiệu ứng cho chữ YÊU TUỆ LIÊN chuyển động */
+        /* Chữ Yêu Tuệ Liên bình thường, rõ nét */
         .love-text {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: bold;
             color: #ff4d6d;
-            text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
             z-index: 10;
-            /* Hiệu ứng chuyển động nhịp tim */
-            animation: heartbeat 1.2s infinite ease-in-out;
-            user-select: none;
             text-align: center;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); text-shadow: 0 0 10px rgba(255, 77, 109, 0.5); }
-            50% { transform: scale(1.1); text-shadow: 0 0 30px rgba(255, 77, 109, 0.8); }
-            100% { transform: scale(1); text-shadow: 0 0 10px rgba(255, 77, 109, 0.5); }
+            margin-bottom: 10px;
         }
 
         .box {
-            background: rgba(255, 255, 255, 0.9); 
-            padding: 50px; 
-            border-radius: 40px; 
-            text
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 40px 60px; 
+            border-radius: 25px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+            border: 1px solid #fff;
+        }
+
+        button {
+            margin-top: 25px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        canvas { position: fixed; top: 0; left: 0; z-index: 1; }
+    </style>
+</head>
+<body>
+    <canvas id="c"></canvas>
+    <div class="box">
+        <div class="love-text">YÊU TUỆ LIÊN ❤️</div>
+        <p style="color: #555; font-size: 1.1rem;">Anh thương em rất nhiều!</p>
+        <button onclick="document.getElementById('m').play(); this.innerText='ĐANG PHÁT NHẠC ❤️'">BẤM ĐỂ NGHE NHẠC</button>
+    </div>
+
+    <audio id="m" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+    <script>
+        var c = document.getElementById("c"), x = c.getContext("2d"), w, h;
+        function res() { w = c.width = window.innerWidth; h = c.height = window.innerHeight; }
+        window.onresize = res; res();
+        var p = Array(60).fill().map(() => ({x: Math.random()*w, y: Math.random()*h, v: Math.random()*1.5+0.5, s: Math.random()*20+10}));
+        function draw() {
+            x.clearRect(0,0,w,h);
+            p.forEach(i => {
+                x.font = i.s + "px Arial";
+                x.fillText("❤️", i.x, i.y);
+                i.y -= i.v; if(i.y < -30) { i.y = h + 30; i.x = Math.random()*w; }
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>
