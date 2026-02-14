@@ -1,57 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Gửi Người Anh Thương ❤️</title>
+    <title>Gửi Tuệ Liên ❤️</title>
     <style>
-        /* Nền màu hồng sáng để chắc chắn không bị đen */
         body { 
-            background: #ffafbd; 
+            background: #ffc0cb; 
             margin: 0; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
             height: 100vh; 
-            font-family: Arial, sans-serif; 
+            font-family: 'Arial', sans-serif; 
             overflow: hidden;
         }
+
+        /* Hiệu ứng cho chữ Yêu Tuệ Liên */
+        .love-text {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ff4d6d;
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+            z-index: 10;
+            cursor: pointer;
+            /* Hiệu ứng chuyển động nhịp đập */
+            animation: heartbeat 1.5s infinite;
+            user-select: none;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         .box {
             background: white; 
-            padding: 30px; 
-            border-radius: 20px; 
+            padding: 40px; 
+            border-radius: 30px; 
             text-align: center; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             z-index: 10;
         }
-        h1 { color: #ff4d6d; }
+
+        button {
+            margin-top: 20px;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { transform: scale(1.1); }
         canvas { position: fixed; top: 0; left: 0; z-index: 1; }
     </style>
 </head>
 <body>
     <canvas id="c"></canvas>
-    <div class="box">
-        <h1>Chào Công Chúa! ❤️</h1>
-        <p>Nếu bạn thấy trang này nghĩa là code đã chạy.</p>
-        <button onclick="document.getElementById('m').play(); alert('Đã bật nhạc!');">BẤM ĐỂ NGHE NHẠC</button>
-    </div>
-    <audio id="m" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
-
-    <script>
-        var c = document.getElementById("c"), x = c.getContext("2d"), w, h;
-        function res() { w = c.width = window.innerWidth; h = c.height = window.innerHeight; }
-        window.onresize = res; res();
-        var p = Array(50).fill().map(() => ({x: Math.random()*w, y: Math.random()*h, v: Math.random()*2+1}));
-        function draw() {
-            x.clearRect(0,0,w,h);
-            x.font = "20px Arial";
-            p.forEach(i => {
-                x.fillText("❤️", i.x, i.y);
-                i.y -= i.v; if(i.y < -20) i.y = h + 20;
-            });
-            requestAnimationFrame(draw);
-        }
-        draw();
-    </script>
-</body>
-</html>
+    <div class="box
